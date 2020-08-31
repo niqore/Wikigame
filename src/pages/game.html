@@ -1,0 +1,122 @@
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/res/wikigame.js"></script>
+	<link rel="stylesheet" type="text/css" href="/res/wikigame.css">
+	<link rel="stylesheet" type="text/css" href="/res/wiki-style.css">
+	<link rel="stylesheet" type="text/css" href="/res/wiki-style-2.css">
+</head>
+
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Wiki rootpage-Wiki skin-vector action-view">
+	<div id="mw-page-base" class="noprint"></div>
+	<div id="mw-head-base" class="noprint"></div>
+	<div id="content" class="mw-body" role="main">
+		<a id="top"></a>
+		<div id="siteNotice" class="mw-body-content"><!-- CentralNotice --></div>
+		<div class="mw-indicators mw-body-content">
+	<div id="mw-indicator-protection-edition" class="mw-indicator"><div class="nopopups"><a href="//fr.wikipedia.org/wiki/Cat%C3%A9gorie:Page_en_semi-protection_longue" title="Cette page est en semi-protection longue."><img alt="Cette page est en semi-protection longue." src="//upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Long-semi-protection-shackle-frwiki.svg/15px-Long-semi-protection-shackle-frwiki.svg.png" decoding="async" width="15" height="21" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Long-semi-protection-shackle-frwiki.svg/23px-Long-semi-protection-shackle-frwiki.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Long-semi-protection-shackle-frwiki.svg/30px-Long-semi-protection-shackle-frwiki.svg.png 2x" data-file-width="512" data-file-height="725" /></a></div></div>
+	</div>
+
+		<h1 id="firstHeading" class="firstHeading" lang="fr"></h1>
+		<h1 id="objectiveHeading" class="firstHeading" lang="fr"></h1>
+		<h1 id="resultsPageHeading" class="firstHeading" lang="fr">Resultats</h1>
+		
+		<div id="bodyContent" class="mw-body-content">
+			<div id="siteSub" class="noprint">Un article de Wikipédia, l&#039;encyclopédie libre.</div>
+			<div id="contentSub"></div>
+			
+			
+			<div id="jump-to-nav"></div>
+			<a class="mw-jump-link" href="#mw-head">Sauter à la navigation</a>
+			<a class="mw-jump-link" href="#p-search">Sauter à la recherche</a>
+			<div id="mw-content-text" lang="fr" dir="ltr" class="mw-content-ltr">
+	</p>
+	<div class="loader" id="loader">Chargement...</div>
+	<div id="webpage">
+
+	</div>
+	<div id="objectivepage">
+
+	</div>
+	<div id="resultspage">
+		<p>Aucun résultat pour le moment</p>
+	</div>
+	</div></div></div>
+	<div id="mw-panel">
+	<div id="p-logo" role="banner">
+		<a  title="Visiter la page d’accueil" class="mw-wiki-logo" href="/wiki/Wikip%C3%A9dia:Accueil_principal"></a>
+	</div>
+	<div class="portal" role="navigation" id="p-navigation"  aria-labelledby="p-navigation-label">
+		<h3 id="p-navigation-label">
+			Navigation
+		</h3>
+		<div class="body">
+			<ul>
+				<li id="n-mainpage-description">
+					<a class="link" title="Quitter" onclick="quitGame()">Quitter</a>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+
+	<div class="portal" role="navigation" id="p-lang"  aria-labelledby="p-lang-label">
+		<h3 id="p-lang-label">
+			Joueurs
+		</h3>
+		<div class="body">
+			<ul id="players"></ul>
+		</div>
+	</div>
+	</div>
+	<div id="mw-navigation">
+    <h2>Menu de navigation</h2>
+    <div id="mw-head">
+       
+
+        <div id="left-navigation">
+            <div id="p-namespaces" role="navigation" class="vectorTabs " aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Espaces de noms</h3>
+	<ul >
+		<li id="ca-nstab-main" class="selected"><a title="Voir le contenu de la page" onclick="showPageActuelle()" id="pageactuelle">Page actuelle</a></li>
+		<li id="ca-nstab-end"><a title="Voir le contenu de la page" onclick="showPageFin()" id="pagearrivee">Page d'arrivée</a></li>
+		<li id="ca-nstab-results"><a title="Voir les resultats" onclick="showResults()" id="resultats">Résultats</a></li>
+	</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<input type="checkbox" class="vectorMenuCheckbox" aria-labelledby="p-variants-label" />
+	<h3 id="p-variants-label">
+		<span>Variantes</span>
+	</h3>
+	<ul class="menu" >
+		
+	</ul>
+</div>
+
+        </div>
+        <div id="right-navigation">
+            <div id="p-views" role="navigation" class="vectorTabs " aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Affichages</h3>
+	<ul >
+		<li id="ca-view" class="collapsible selected"><a href="/wiki/Wiki">Lire</a></li>
+	</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<input type="checkbox" class="vectorMenuCheckbox" aria-labelledby="p-cactions-label" />
+	<h3 id="p-cactions-label">
+		<span>Plus</span>
+	</h3>
+	<ul class="menu" >
+		
+	</ul>
+</div>
+
+        </div>
+    </div>
+	</div>
+	
+</div>
+</div>
+</body>
+</html>

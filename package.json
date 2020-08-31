@@ -1,0 +1,36 @@
+{
+  "name": "wikigame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "createdb": "npx mikro-orm schema:create -r",
+    "start": "node dist/index.js"
+  },
+  "author": "Nashoba24",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.0.14",
+    "@types/request": "^2.48.5",
+    "@types/socket.io": "^2.1.11",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cpx": "^1.5.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mikro-orm": "^3.6.15",
+    "request": "^2.88.2",
+    "socket.io": "^2.3.0",
+    "sqlite3": "^4.2.0",
+    "ts-node": "^8.10.2"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
+  }
+}

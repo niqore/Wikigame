@@ -55,6 +55,9 @@ export class Game {
         player.publicInfo.pagesPath.push(page);
         player.publicInfo.page = page;
         this.updatePlayer(player);
+        if (player.publicInfo.page === this.endPage) {
+            this.gameEnd(player);
+        }
     }
 
     public sendObjectives(player: Player): void {
@@ -84,5 +87,15 @@ export class Game {
                 }
             }
         });
+    }
+
+    public gameEnd(winner: Player): void {
+        let results = [];
+        for (var i in this.players) {
+            results.push(this.players[i].generateResults(this.players[i] == winner));
+        }
+        for (var i in this.players) {
+            this.players[i].socket.emit('game end', results);
+        }
     }
 }

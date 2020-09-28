@@ -10,6 +10,10 @@ $(document).ready(function () {
 		players[playerInfo.pseudo] = playerInfo;
 		refreshPlayers();
 	});
+	socket.on('game end', function(results) {
+		this.setResultsPage(results);
+		showResults();
+	});
 });
 
 function quitGame() {
@@ -60,9 +64,6 @@ function load_page(page) {
 					load_page(lastHref);
 				}
 			});
-			if (objective == data.parse.title) {
-				socket.emit('game end');
-			}
 		},
 		error : function(request,error){
 			$("#loader").hide();
@@ -127,6 +128,24 @@ function showResults() {
 	$("#resultats").addClass("selected");
 	$("#resultspage").show();
 	$("#resultsPageHeading").show();
+}
+
+function setResultsPage(results) {
+	html = '';
+	for (var i in results) {
+		p = results[i];
+		html += '<h3>' + p['pseudo'];
+		if (p['winner']) {
+			html += ' - GAGNANT';
+		}
+		html += '</h3><p><strong>Nombre de victoires: </strong>' + p['winCount'] + '</p><p><strong>Nombre de pages parcourues: </strong>' + p['pagesPath'].length + '</p><p><strong>Pages parcourues: </strong></p><p>';
+		for (var i = 0; i < p['pagesPath'].length - 1; ++i) {
+			html += p['pagesPath'][i] + ' <strong>-></strong> ';
+		}
+		html += p['pagesPath'][p['pagesPath'].length - 1];
+		html += '</p><br><br>';
+	}
+	$("#resultspage").html(html);
 }
 
 /*function getCookie(name) {

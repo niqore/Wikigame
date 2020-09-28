@@ -14,6 +14,10 @@ export class Player {
         page: '?'
     };
 
+    public generateResults(winner: boolean) {
+        return { pagesPath: this.publicInfo.pagesPath, winCount: this.user.gamesWon, winner: winner, pseudo: this.user.username };
+    };
+
     constructor(user: WikiUser) {
         this.user = user;
         this.publicInfo.pseudo = user.username;
